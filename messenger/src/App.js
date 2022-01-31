@@ -1,5 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import {Message} from './components/Message';
+
+const congratulation = {
+  name: 'Andry',
+  lastName: 'Novikov',
+}
 
 function App() {
   return (
@@ -17,9 +23,11 @@ function App() {
         >
           Learn React
         </a>
+        < Message post="fullstack course student"  text={congratulation.lastName + " " + congratulation.name}/>
       </header>
     </div>
   );
 }
 
 export default App;
+
