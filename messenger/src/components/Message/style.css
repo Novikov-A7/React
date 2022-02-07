@@ -1,6 +1,9 @@
 .header{
+  margin: 0px auto 0px 370px;
+
+  
   color: red;
-  font-size: 35px;
+  font-size: 25px;
 }
 .header__text{
   color: greenyellow;
