@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -23,9 +24,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.wrapper{
-  display: flex;
-}
+
 .myChatList{
   display: flex;
   align-items: center;
