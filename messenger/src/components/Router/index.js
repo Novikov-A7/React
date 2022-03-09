@@ -4,6 +4,7 @@ import '../../App.css'
 import { ChatList } from "../ChatsList/index.js";
 import { Profile } from "../Profile/index.js";
 import { useState } from "react";
+import { ThemeContext } from "../../utils/ThemeContext.js";
 
 const Home = () => <h2>Home Page</h2>;
 const initChats = [
@@ -15,7 +16,9 @@ const initMessages = initChats.reduce((acc, el) =>{
   acc[el.id] = [];
   return acc;
 }, {});
+
 export const Router = () => {
+  const [messageColor, setMessageColor] = useState('blue');
   const [chatList, setChatList] = useState(initChats);
   const [messages, setMessages] = useState(initMessages);
 
@@ -52,23 +55,25 @@ export const Router = () => {
     } )
   };
   return (
-    <BrowserRouter>
-      <div>
-        <Link to="/">home</Link>
-      </div>
-      <div>
-        <Link to="/profile">profile</Link>
-      </div>
-      <div>
-        <Link to="/chats">chats</Link>
-      </div>
-      <Routes>
-        <Route path="/" element={ <Home /> } />
-        <Route path="profile" element={ <Profile /> } />
-        <Route path="chats" element={ <ChatList onDeleteChat={hendleDeleteChat} onAddChat={hendleAddChat} chats={chatList} /> }>
-        <Route path=":chatId" element={ <Chat messages={messages} addMessage={handleAddMessage}/> } />
-        </Route>
-      </Routes>      
-    </BrowserRouter>
+    <ThemeContext.Provider value={{messageColor, setMessageColor}}>
+      <BrowserRouter>
+        <div>
+          <Link to="/">home</Link>
+        </div>
+        <div>
+          <Link to="/profile">profile</Link>
+        </div>
+        <div>
+          <Link to="/chats">chats</Link>
+        </div>
+        <Routes>
+          <Route path="/" element={ <Home /> } />
+          <Route path="profile" element={ <Profile /> } />
+          <Route path="chats" element={ <ChatList onDeleteChat={hendleDeleteChat} onAddChat={hendleAddChat} chats={chatList} /> }>
+          <Route path=":chatId" element={ <Chat messages={messages} addMessage={handleAddMessage}/> } />
+          </Route>
+        </Routes>      
+      </BrowserRouter>
+    </ThemeContext.Provider>
   );
 };
