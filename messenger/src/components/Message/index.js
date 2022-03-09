@@ -1,5 +1,9 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../../utils/ThemeContext.js';
 import './style.css';
 
 export const Message = ({text, author}) => {
-  return (<p className ="header">{author} : <span className="header__text">{text}</span></p>);
+  const{messageColor} = useContext(ThemeContext)
+  
+  return (<p className ="header">{author} : <span style={{color: messageColor}} className="header__text">{text}</span></p>);
 };
